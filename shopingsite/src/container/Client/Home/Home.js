@@ -38,7 +38,7 @@ export default class Home extends React.Component {
                                                             <li className="list-inline-item"><i className="fa fa-star-o"></i></li>
                                                         </ul>
                                                     </div>
-                                                    <a href="#" className="btn btn-primary">Add to Cart</a>
+                                                    <a href="" className="btn btn-primary">Add to Cart</a>
                                                 </div>
                                             </div>
                                         </div>

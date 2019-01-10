@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    NavItem,
     NavLink
 } from 'reactstrap';
 

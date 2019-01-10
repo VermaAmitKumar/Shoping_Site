@@ -1,20 +1,27 @@
-var {mysql} = require('mysql2');
-var connection= require('../DbConnection');
+const Sequelize = require('sequelize');
+const { mysql } = require('../DbConnection');
 
-var Category = mysql.define('tbl_Category',{
-    Category_id :{
-        type:Number
-    },Category_Name:{
-        type:string
-    }    
+const Category = mysql.define('tbl_Category', {
+    Category_id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
+    Category_Name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    active: {
+        type: Sequelize.INTEGER(1),
+        defaultValue: 0
+    }
 });
 
 Category.sync({ force: false }).then((res) => {
-    console.log('Table sucessfully created');
+    console.log(' Category Table Create Succesfully');
 }).catch((err) => {
     console.log('Error in creating Table', err);
 })
 
-// module.exports={
-//     Category
-// }
+module.exports = Category;
+

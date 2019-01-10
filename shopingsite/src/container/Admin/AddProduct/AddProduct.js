@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class AddProduct extends Component {
-    render() {
+    state={
+        category:[]
+    }
+    componentDidMount=()=>{
+        axios.get("http://localhost:3000/Categry/show").then(Response=>{
+            this.setState({category: Response.data})
+        })
+    }
+    render() {      
+        const data = this.state.category.map(data=>{
+            return <option value={data.Category_id}>{data.Category_Name}</option>
+        }) 
         return (
             <div className="container">
                 <div className="card">
@@ -13,14 +25,13 @@ export default class AddProduct extends Component {
                             <div className="form-group">
                                     <div className="md-form">
                                         <input type="text" id="materialRegisterFormFirstName" className="form-control" />
-                                        <label for="materialRegisterFormFirstName">Product Name</label>
-                                    </div>
-                                
+                                        <label htmlFor="materialRegisterFormFirstName">Product Name</label>
+                                    </div>                                
                                 <div className="form-group">
                                         <select class="form-control">
-                                            <option>Default select</option>
+                                            {data}
                                         </select>
-                                        <label for="materialRegisterFormFirstName">Product Category</label>
+                                        <label htmlFor="materialRegisterFormFirstName">Product Category</label>
                                     </div>
                             </div>
                             <div className="form-group">                                
@@ -28,14 +39,13 @@ export default class AddProduct extends Component {
                                         <select class="form-control">
                                             <option>Default select</option>
                                         </select>
-                                        <label for="materialRegisterFormFirstName">Product SubCategory</label>
+                                        <label htmlFor="materialRegisterFormFirstName">Product SubCategory</label>
                                     </div>
                                     <div className="form-group">
                                         <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
-                                        <label for="materialRegisterFormPassword">product Image</label>                                        
+                                        <label htmlFor="materialRegisterFormPassword">product Image</label>                                        
                                     </div>
                             </div>
-
                             <div className="md-form">
                             </div>
                             <button className="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
