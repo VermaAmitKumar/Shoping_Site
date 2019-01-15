@@ -17,11 +17,11 @@ const Category = mysql.define('tbl_Category', {
     }
 });
 
-Category.sync({ force: false }).then((res) => {
-    console.log(' Category Table Create Succesfully');
-}).catch((err) => {
-    console.log('Error in creating Table', err);
-})
+// Category.sync({ force: false }).then((res) => {
+//     // console.log(' Category Table Create Succesfully');
+// }).catch((err) => {
+//     console.log('Error in creating Table', err);
+// })
 
 module.exports = Category;
 

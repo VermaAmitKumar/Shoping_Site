@@ -11,16 +11,16 @@ const composeEnhancers =
 var enhancer = composeEnhancers(
   applyMiddleware(thunk)
 );
-// const token = localStorage.getItem("TOKEN");
-// const INITIAL_STATE = {
-//   Auth: {
-//     token: "",
-//     error_msg: ""
-//   }
+// debugger;
+// const CategoryData = localStorage.getItem("CategoryData");
 
+// // console.log(JSON.stringify( CategoryData,undefined,2));
+// const INITIAL_STATE = {
+//   category:[]
 // }
-// if(token)
-//   INITIAL_STATE.Auth.token=token;
+// if(CategoryData)
+// // console.log(CategoryData.toSource());
+//   INITIAL_STATE.category=CategoryData;
 // export default createStore(rootReducer,INITIAL_STATE, enhancer);
 
 export default createStore(rootReducer, enhancer);

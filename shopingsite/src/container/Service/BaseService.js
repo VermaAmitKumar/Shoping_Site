@@ -1,5 +1,5 @@
 import axios from 'axios';
-export const   baseUrl='http://localhost:5000/register';
+export const   baseUrl='http://localhost:3000/';
 const baseService =axios.create({
     baseURL:baseUrl
 })

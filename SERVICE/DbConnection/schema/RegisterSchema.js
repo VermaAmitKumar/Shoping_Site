@@ -29,13 +29,10 @@ const Register = mysql.define('Tbl_Register', {
         allowNull: false,
     },
     Phone_Number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER(10),
         allowNull: false,
     },
-    RegisterDate: {
-        type: Sequelize.DATE,
-        allowNull: false,
-    },    
+       
     active: {
         type: Sequelize.INTEGER(1),
         defaultValue: 0
@@ -43,7 +40,7 @@ const Register = mysql.define('Tbl_Register', {
 });
 
 Register.sync({ force: false }).then((res) => {
-    console.log('Table Create Succesfully');
+    // console.log('Table Create Succesfully');
 }).catch((err) => {
     console.log('Error in creating Table', err);
 })

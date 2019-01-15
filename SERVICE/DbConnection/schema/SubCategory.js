@@ -22,13 +22,13 @@ const Sub_Category = mysql.define('tbl_Sub_Category', {
     }
 });
 
-Sub_Category.belongsTo(Category, {foreignKey: 'Cid'});
+Sub_Category.belongsTo(Category, {foreignKey: 'Category_id'});
 
-Sub_Category.sync({ force: false }).then((res) => {
-    console.log(' Sub_Category Table Create Succesfully');
-}).catch((err) => {
-    console.log('Error in creating Table', err);
-})
+// Sub_Category.sync({ force: false }).then((res) => {
+//     // console.log(' Sub_Category Table Create Succesfully');
+// }).catch((err) => {
+//     console.log('Error in creating Table', err);
+// })
 
 module.exports = Sub_Category;
 
