@@ -1,5 +1,17 @@
 
-
+.extra{
+  width: 92%;
+}
+.imgstyle{
+  height:100% ;
+  width: 90%;
+}
+.categort{
+  margin-left: -11%
+}
+.p{
+  margin-top: 5%;
+}
   .card-product:after {
     content: "";
     display: table;

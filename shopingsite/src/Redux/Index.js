@@ -5,4 +5,6 @@ import SelectSubcategoryReducer from './SelectSubcategory'
 import ProductReducer from './ProductRedux'
 import RegisterReducer from './RegisterRedux'
 import LogingReducer from './LoginAuthRedux'
-export default combineReducers({category,SelectSubcategoryReducer,ProductReducer,RegisterReducer,LogingReducer});
+import AdminReducer from './AdminLogingRedux'
+import FetchProductReducer from './FetchProductRedux'
+export default combineReducers({category,SelectSubcategoryReducer,ProductReducer,RegisterReducer,LogingReducer,AdminReducer,FetchProductReducer});

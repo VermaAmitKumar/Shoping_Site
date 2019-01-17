@@ -6,8 +6,7 @@ import * as logingAction from '../../action/CategorySelect';
  class Loging extends Component {
     state={
         Email:"",
-        password:""
-        
+        password:""        
     }
     SubmitButtonHndler=(Event)=>{
         Event.preventDefault();
@@ -48,7 +47,6 @@ import * as logingAction from '../../action/CategorySelect';
         );
     }
 }
-
 const mapStateToProps = (state) => {
     return {        
         LogingData:state.LogingReducer.LogingAction

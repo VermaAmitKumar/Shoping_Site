@@ -6,7 +6,7 @@ import * as RegisterAddedAction from '../../action/CategorySelect';
  class SignUp extends Component {
     state={
         Register_Name:"",
-        Role:"Client",
+        Role:"Admin",
         Address:"",
         Email:"",
         password:"",

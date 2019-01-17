@@ -39,10 +39,10 @@ const Register = mysql.define('Tbl_Register', {
     }
 });
 
-Register.sync({ force: false }).then((res) => {
-    // console.log('Table Create Succesfully');
-}).catch((err) => {
-    console.log('Error in creating Table', err);
-})
+// Register.sync({ force: false }).then((res) => {
+//     // console.log('Table Create Succesfully');
+// }).catch((err) => {
+//     console.log('Error in creating Table', err);
+// })
 module.exports = Register;
 

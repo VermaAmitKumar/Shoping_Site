@@ -1,37 +1,53 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Subcategory from './SelectsubCategoryById';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as CategorySelect from '../../action/CategorySelect';
-
-import Axios from 'axios';
-
-
-
+import ImageUploader from 'react-images-upload';
 let data;
 class AddProduct extends Component {
     state = {
         product_Name: "",
         Prize: "",
         qty: "",
-        active:1,
+        active: 1,
         Category_id: "",
-        Sub_Category_Id: ""
+        Sub_Category_Id: "",
+        image: []
     }
     componentWillMount = () => {
         this.props.action.fetchCategory.FetchCategory();
     }
     AddProduct = (Event) => {
         Event.preventDefault();
-        this.props.action.AddPrdoct.ProductSaveAction(this.state);
-    }  
+        console.log(this.state.image);
+        const formData = new FormData();
+
+        formData.append('product_Name', this.state.product_Name);
+                
+        for (var i = 0; i < this.state.image.length; i++) {
+            formData.append('image', this.state.image[i]);
+        }
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+
+        this.props.action.AddPrdoct.ProductSaveAction(formData,config);
+
+    }
     categoryChangeHandler(e) {
         this.props.action.fetchCategory.FetchCategory();
         var id = e.target.value;
         this.props.action.subcategory.SelectSubcategory(id);
-        this.setState({ Category_id: e.target.value })      
-    }    
+        this.setState({ Category_id: e.target.value })
+    }
+    imagemultiple = (pictureFiles) => {
+        debugger
+        this.setState({
+            image: this.state.image.concat(pictureFiles)
+        });
+    }
     render() {
         if (this.props.category) {
             data = this.props.category.map(data => {
@@ -39,10 +55,10 @@ class AddProduct extends Component {
             })
         }
         let datasub = [];
-            if (this.props.SelectSubcategory) {
-                for (let i = 0; i < this.props.SelectSubcategory.length; i++) {
-                    datasub[i] = this.props.SelectSubcategory[i];
-                }
+        if (this.props.SelectSubcategory) {
+            for (let i = 0; i < this.props.SelectSubcategory.length; i++) {
+                datasub[i] = this.props.SelectSubcategory[i];
+            }
         }
         return (
             <div className="container">
@@ -51,7 +67,7 @@ class AddProduct extends Component {
                         <strong>Add Product</strong>
                     </h5>
                     <div className="card-body px-lg-5 pt-0" style={{ marginTop: 18 }}>
-                        <form className="text-center" style={{ color: 757575 }}   method="Post">
+                        <form className="text-center" style={{ color: 757575 }} method="Post">
                             <div className="form-group">
                                 <div className="md-form">
                                     <input type="text" id="materialRegisterFormFirstName" className="form-control" placeholder="Name" onChange={(Event) => { Event.preventDefault(); this.setState({ product_Name: Event.target.value }) }} />
@@ -71,7 +87,7 @@ class AddProduct extends Component {
                                 <div className="form-group">
                                     <select className="form-control" onChange={(Event) => this.setState({ Sub_Category_Id: Event.target.value })} >
                                         <option>select Subcategory </option>
-                                        { datasub.map(data => {
+                                        {datasub.map(data => {
                                             return <option key={data.Sub_Category_Id} value={data.Sub_Category_Id}>{data.Sub_Category_Name}</option>
                                         })}
                                     </select>
@@ -86,7 +102,20 @@ class AddProduct extends Component {
                                     <label htmlFor="Product_qty"></label>
                                 </div>
                                 <div className="form-group">
-                                    <input type="file" className="form-control-file" name="file" id="file" multiple  />
+                                    <ImageUploader
+                                        withIcon={true}
+                                        buttonText="Choose Images"
+                                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                        onChange={this.imagemultiple.bind(this)}
+                                        withPreview={false}
+                                        maxFileSize={5242880}
+                                        withLabel={false} />
+                                    {/* <input 
+                                        type="file" 
+                                        className="form-control-file"
+                                        name="file" id="file"
+                                        onChange={this.imagemultiple.bind(this)}
+                                        multiple  /> */}
                                     <label htmlFor="materialRegisterFormPassword"></label>
                                 </div>
                             </div>
@@ -104,14 +133,14 @@ const mapStateToProps = (state) => {
     return {
         category: state.category.category,
         SelectSubcategory: state.SelectSubcategoryReducer.SelectSubcategory,
-        AddPrdoct:state.ProductReducer.ProductSaveAction
- }
+        AddPrdoct: state.ProductReducer.ProductSaveAction
+    }
 }
 const mapDispatchToProps = dispatch => ({
     action: {
         fetchCategory: bindActionCreators(CategorySelect, dispatch),
         subcategory: bindActionCreators(CategorySelect, dispatch),
-        AddPrdoct:bindActionCreators(CategorySelect, dispatch),
+        AddPrdoct: bindActionCreators(CategorySelect, dispatch),
     }
 });
 

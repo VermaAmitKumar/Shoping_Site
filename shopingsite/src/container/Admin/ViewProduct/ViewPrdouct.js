@@ -1,100 +1,86 @@
 import React, { Component } from 'react'
 import './ViewPrdouct.css'
-const img1 = require('../../../Image/1.jpg');
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as ProdctAction from '../../action/CategorySelect';
+// const img1 = require('../../../Image/1.jpg');
 const img2 = require('../../../Image/2.jpg');
-export default class Header extends Component {
+
+class ViewPrdouct extends Component {
+    componentDidMount = () => {
+        this.props.action.ShowPrdoct.FetchProductAction();
+    }
+    deleteButtonHandler=(id)=>{
+        // debugger
+        console.log(id);
+    }
+    UpdateButtonHandler=(id)=>{
+        // debugger
+        console.log(id);
+    }
     render() {
+        let data
+        if(this.props.ShowPrdoct){
+         data =  this.props.ShowPrdoct.map(data=>{
+            return <tr key={data.Product_id}>
+            <td>{data.product_Name}</td>
+            <td>{data.Category_Name}</td>
+            <td>{data.Sub_Category_Name}</td>
+            <td><img src={img2} alt={data.product_Name} ></img></td>
+            <td>{data.Prize}</td>
+            <td>{data.qty}</td>
+            {/* <td>{data.active}</td> */}
+            <th>
+                <button  type="button" onClick={()=>this.UpdateButtonHandler(data.Product_id)} className="btn btn-danger">Edit</button>&nbsp;&nbsp;
+                <button type="button"  onClick={()=>this.deleteButtonHandler(data.Product_id)} className="btn btn-warning" >Delete</button>
+            </th>
+        </tr>
+        })
+    }
         return (
             <div className="container">
-                <div className="table-responsive">
-                    <table className="table table-hover shopping-cart-wrap">
-                        <thead className="text-muted">
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col" width="120">Quantity</th>
-                                <th scope="col" width="120">Price</th>
-                                <th scope="col" width="200" className="text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <figure className="media">
-                                        <div className="img-wrap"><img src={img1} className="img-thumbnail img-sm" /></div>
-                                        <figcaption className="media-body">
-                                            <h6 className="title text-truncate">Product name goes here </h6>
-                                            <dl className="param param-inline small">
-                                                <dt>Size: </dt>
-                                                <dd>XXL</dd>
-                                            </dl>
-                                            <dl className="param param-inline small">
-                                                <dt>Color: </dt>
-                                                <dd>Orange color</dd>
-                                            </dl>
-                                        </figcaption>
-                                    </figure>
-                                </td>
-                                <td>
-                                    <select className="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div className="price-wrap">
-                                        <var className="price">USD 145</var>
-                                        <small className="text-muted">(USD5 each)</small>
-                                    </div>
-                                </td>
-                                <td className="text-right">
-                                    <a title="" href="" className="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i className="fa fa-heart"></i></a>
-                                    <a href="" className="btn btn-outline-danger"> × Remove</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <figure className="media">
-                                        <div className="img-wrap"><img src={img2} className="img-thumbnail img-sm" /></div>
-                                        <figcaption className="media-body">
-                                            <h6 className="title text-truncate">Product name goes here </h6>
-                                            <dl className="param param-inline small">
-                                                <dt>Size: </dt>
-                                                <dd>XXL</dd>
-                                            </dl>
-                                            <dl className="param param-inline small">
-                                                <dt>Color: </dt>
-                                                <dd>Orange color</dd>
-                                            </dl>
-                                        </figcaption>
-                                    </figure>
-                                </td>
-                                <td>
-                                    <select className="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div className="price-wrap">
-                                        <var className="price">USD 35</var>
-                                        <small className="text-muted">(USD10 each)</small>
-                                    </div>
-                                </td>
-                                <td className="text-right">
-                                    <a title="" href="" className="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist">
-                                        <i className="fa fa-heart"></i>
-                                    </a>
-                                    <a href="" className="btn btn-outline-danger btn-round"> × Remove</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table id="example" className="table table-striped table-bordered" >
+                    <thead>
+                        <tr>
+                        <th>product_Name</th>
+                            <th>Category_Name</th>
+                            <th>Sub_Category_Name</th>
+                            <th>Product_Images</th>
+                            <th>Prize</th>
+                            <th>Qty</th>
+                            {/* <th>Active</th> */}
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                        <th>product_Name</th>
+                            <th>Category_Name</th>
+                            <th>Sub_Category_Name</th>
+                            <th>Product_Images</th>
+                            <th>Prize</th>
+                            <th>Qty</th>
+                            {/* <th>Active</th> */}
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        ShowPrdoct: state.FetchProductReducer.ProductData,
+ }
+}
+const mapDispatchToProps = dispatch => ({
+    action: {
+        ShowPrdoct:bindActionCreators(ProdctAction, dispatch),
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewPrdouct)

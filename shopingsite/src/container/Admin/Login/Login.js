@@ -1,42 +1,65 @@
-import React, { Component } from 'react';
-import './css/style.css';
-// import './css/font-awesome.min.css';
+import React, { Component } from 'react'
+import './Loging.css'
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as AdminlogingAction from '../../action/CategorySelect';
 
-export default class Header extends Component {
-    componentDidMount=()=>{
-		// addEventListener("load", function () {
-		// 	setTimeout(hideURLbar, 0);
-		// }, false);
-
-		// function hideURLbar() {
-		// 	window.scrollTo(0, 1);
-		// }
+ class AdminLogin extends Component {
+    state={
+        Email:"",
+        password:"" ,
+        Role:"Admin"       
+    }
+    SubmitButtonHndler=(Event)=>{
+        Event.preventDefault();
+        this.props.action.adminLogingData.AdminLogingAction(this.state);
+        // console.log(this.state);
     }
     render() {
         return (
-            <p>
-	<h1>
-		<span>L</span>ogin
-		<span>F</span>orm
-	</h1>
+            <div className="container">
+            <div className="row">
+                <div className="form_bg" style={{height:400}}>
+                    <form>
+                         <h2 className="text-center">Admin Login </h2>
+                        <br/>
+                        <div className="form-group">
+                            <input 
+                            type="email"
+                            className="form-control"
+                            id="userid"
+                            placeholder="User id"
+                            onChange={(Event)=>this.setState({Email:Event.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <input 
+                            type="password" 
+                            className="form-control" 
+                            id="pwd"
+                             placeholder="Password"
+                             onChange={(Event)=>this.setState({password:Event.target.value})} />
+                        </div>
+                        <br/>
+                        <div className="align-center">
+                            <button type="submit" className="btn btn-default" id="login" onClick={this.SubmitButtonHndler.bind(Event)}  >Login</button>
+                        </div>  
+                    </form>
+                </div>
+            </div>
+        </div>   
+        );
+    }
+}
+const mapStateToProps = (state) => {
+    return {        
+        // LogingData:state.LogingReducer.LogingAction
+ }
+}
+const mapDispatchToProps = dispatch => ({
+    action: {
+        adminLogingData: bindActionCreators(AdminlogingAction, dispatch),
+        
+    }
+});
 
-	<div className="sub-main-w3" style={{}}>
-		<form className="login" action="#" method="post">
-			<p className="legend">Login Here<span className="fa fa-hand-o-down"></span></p>
-			<div className="input">
-				<input type="email" placeholder="Email" name="email" required />
-				<span className="fa fa-envelope"></span>
-			</div>
-			<div className="input">
-				<input type="password" placeholder="Password" name="password" required />
-				<span className="fa fa-unlock"></span>
-			</div>
-			<button type="submit" className="submit">
-				<span className="fa fa-sign-in"></span>
-			</button>
-		</form>
-	</div>
-    </p>
-            );
-            }
-        }
+export default connect(mapStateToProps, mapDispatchToProps)(AdminLogin)
