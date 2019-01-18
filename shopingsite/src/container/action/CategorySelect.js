@@ -8,8 +8,93 @@ import { SUCCESSFUL_Added,INVALID_DATA1 } from '../../Redux/ProductRedux';
 import { SUCCESSFULLYADDED,INVALID_DATAError } from '../../Redux/RegisterRedux';
 import { SUCCESSFUL_Loging,Loging_Failed,LOGOUT } from '../../Redux/LoginAuthRedux';
 import { AdminSUCCESSFUL_Loging,AdminLoging_Failed,AdminLOGOUT } from '../../Redux/AdminLogingRedux';
-import { SUCCESSFUL_Fetch_Product,INVALID_DATA_Product, SUCCESSFUL_Fetch_Product2 } from '../../Redux/FetchProductRedux';
+import { SUCCESSFUL_Fetch_Product,
+         INVALID_DATA_Product,
+         Block_Unblock_Product,
+         SUCCESSFUL_Fetch_Product2,
+         SUCCESSFUL_Fetch_ProductImage,
+         SUCCESSFUL_Fetch_productfetchSINgle,
+         Admin_Fetch_Product 
+} from '../../Redux/FetchProductRedux';
 
+export const BlockUnblockProductAction = (id,data) => {
+    return (dispatch) => {
+        authService.BlockUnblockService(id,data).then((response) => {
+            debugger
+            if (response.status === 200) {
+                dispatch(
+                    {
+                        type: Block_Unblock_Product,
+                        activestatus: response.data[0]                        
+                    }
+                );
+            }
+        })
+            .catch((error) => {
+                if (error.response) {
+                    dispatch({ type: INVALID_DATA_Product, data: { error_msg: error.response.data.error } });
+                }
+            })
+    }
+};
+
+export const AdminFetchProductAction = () => {
+    return (dispatch) => {
+        authService.AdminFetchProductService().then((response) => {
+            if (response.status === 200) {
+                dispatch(
+                    {
+                        type: Admin_Fetch_Product,
+                        AdminProductData: response.data                        
+                    }
+                );
+            }
+        })
+            .catch((error) => {
+                if (error.response) {
+                    dispatch({ type: INVALID_DATA_Product, data: { error_msg: error.response.data.error } });
+                }
+            })
+    }
+};
+export const FetchProductSingleAction = (id) => {
+    return (dispatch) => {
+        authService.FetchProductSingleService(id).then((response) => {
+            if (response.status === 200) {
+                dispatch(
+                    {
+                        type: SUCCESSFUL_Fetch_productfetchSINgle ,
+                        productfetchSINgle: response.data                        
+                    }
+                );
+            }
+        })
+            .catch((error) => {
+                if (error.response) {
+                    dispatch({ type: INVALID_DATA_Product, data: { error_msg: error.response.data.error } });
+                }
+            })
+    }
+};
+export const FetchProductImageAction = (id) => {
+    return (dispatch) => {
+        authService.FetchProductImageService(id).then((response) => {
+            if (response.status === 200) {
+                dispatch(
+                    {
+                        type: SUCCESSFUL_Fetch_ProductImage ,
+                        ProductImage: response.data                        
+                    }
+                );
+            }
+        })
+            .catch((error) => {
+                if (error.response) {
+                    dispatch({ type: INVALID_DATA_Product, data: { error_msg: error.response.data.error } });
+                }
+            })
+    }
+};
 export const FetchProductAction2 = (id,id2) => {
     return (dispatch) => {
         authService.FetchProductforCatAndSubcatService(id,id2).then((response) => {

@@ -19,11 +19,13 @@ class AddProduct extends Component {
     }
     AddProduct = (Event) => {
         Event.preventDefault();
-        console.log(this.state.image);
         const formData = new FormData();
-
         formData.append('product_Name', this.state.product_Name);
-                
+        formData.append('Prize', this.state.Prize);
+        formData.append('qty', this.state.qty);
+        formData.append('active', this.state.active);
+        formData.append('Category_id', this.state.Category_id);
+        formData.append('Sub_Category_Id', this.state.Sub_Category_Id);
         for (var i = 0; i < this.state.image.length; i++) {
             formData.append('image', this.state.image[i]);
         }
@@ -32,9 +34,9 @@ class AddProduct extends Component {
                 'content-type': 'multipart/form-data'
             }
         };
-
+        // console.log(formData);
         this.props.action.AddPrdoct.ProductSaveAction(formData,config);
-
+        this.props.history.push({pathname: '/ViewProduct'})
     }
     categoryChangeHandler(e) {
         this.props.action.fetchCategory.FetchCategory();
@@ -43,7 +45,7 @@ class AddProduct extends Component {
         this.setState({ Category_id: e.target.value })
     }
     imagemultiple = (pictureFiles) => {
-        debugger
+        // debugger
         this.setState({
             image: this.state.image.concat(pictureFiles)
         });
@@ -108,6 +110,7 @@ class AddProduct extends Component {
                                         imgExtension={['.jpg', '.gif', '.png', '.gif']}
                                         onChange={this.imagemultiple.bind(this)}
                                         withPreview={false}
+                                        id="file"
                                         maxFileSize={5242880}
                                         withLabel={false} />
                                     {/* <input 

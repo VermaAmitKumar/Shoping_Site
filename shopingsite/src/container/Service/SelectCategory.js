@@ -25,6 +25,20 @@ export function AdminLogingService(data){
 export function FetchProductService(){
     return baseService.get("./product/Show");
 }
+export function AdminFetchProductService(){
+    return baseService.get("./adminproduct/Show");
+}
 export function FetchProductforCatAndSubcatService(id,id2){
     return baseService.get("./product/ShowwithCatAndSubcat/"+ id + '/'+id2);
+}
+export function FetchProductImageService(id){
+    return baseService.get("./prdouct/FetchImage/"+ id);
+}
+export function FetchProductSingleService(id){
+    return baseService.get("./product/FetchSingleProduct/"+ id);
+}
+
+export function BlockUnblockService(id,data){
+    debugger
+    return baseService.put("./SubCategry/ActiveDeactive/"+id,data );
 }

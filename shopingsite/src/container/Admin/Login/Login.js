@@ -18,9 +18,9 @@ import * as AdminlogingAction from '../../action/CategorySelect';
     render() {
         return (
             <div className="container">
-            <div className="row">
-                <div className="form_bg" style={{height:400}}>
-                    <form>
+                <div className="row">
+                    <div className="form_bg" style={{height:400}}>
+                        <form>
                          <h2 className="text-center">Admin Login </h2>
                         <br/>
                         <div className="form-group">
@@ -44,9 +44,9 @@ import * as AdminlogingAction from '../../action/CategorySelect';
                             <button type="submit" className="btn btn-default" id="login" onClick={this.SubmitButtonHndler.bind(Event)}  >Login</button>
                         </div>  
                     </form>
+                    </div>
                 </div>
-            </div>
-        </div>   
+            </div>   
         );
     }
 }

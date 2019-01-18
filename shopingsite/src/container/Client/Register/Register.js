@@ -16,6 +16,7 @@ import * as RegisterAddedAction from '../../action/CategorySelect';
     SubmitButtonHandler=(E)=>{
         E.preventDefault();
         this.props.action.RegisterData.RegisterSaveAction(this.state);
+        this.props.history.push({pathname: '/Cloging'})
     }
     render() {
         return (

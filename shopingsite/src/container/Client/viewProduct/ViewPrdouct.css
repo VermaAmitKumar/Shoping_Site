@@ -1,4 +1,35 @@
 
+
+/*MOdal css start*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+
+/*MOdal css end*/
 .extra{
   width: 92%;
 }
@@ -32,7 +63,7 @@
       max-width: 100%;
       object-fit: cover; }
       
-      .card-product .info-wrap {
+    .card-product .info-wrap {
     overflow: hidden;
     padding: 15px;
     border-top: 1px solid #eee; }
