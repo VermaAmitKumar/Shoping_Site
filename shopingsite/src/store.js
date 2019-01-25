@@ -11,24 +11,27 @@ const composeEnhancers =
 var enhancer = composeEnhancers(
   applyMiddleware(thunk)
 );
-// debugger
+//  
 const token = localStorage.getItem("tokenId");
 const token1 = localStorage.getItem("AdmintokenId");
 const INITIAL_STATE = {
-  LogingReducer:{
-    tokenId:"",
-    error_msg:""   
-  } ,
-  AdminReducer:{
-    AdmintokenId:"",
-    Adminerror_msg:"" 
+  
+  FetchProductReducer:{
+    AdminProductData:[],
+    ProductData:[],
+    ProductData2:[],
+    ProductImage:[],
+    productfetchSINgle:[],
+    activestatus:"",
+    error_msg:"",
+    AdmintokenId:""  
   }
 
 }
 if(token){
-INITIAL_STATE.LogingReducer.tokenId=token
+INITIAL_STATE.FetchProductReducer.tokenId=token
 }
 if(token1){
-  INITIAL_STATE.AdminReducer.AdmintokenId=token1
+  INITIAL_STATE.FetchProductReducer.AdmintokenId=token1
 }
 export default createStore(rootReducer,INITIAL_STATE, enhancer);

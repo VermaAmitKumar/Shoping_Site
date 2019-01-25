@@ -9,8 +9,7 @@ class ClientViewCategory extends Component {
     componentDidMount = () => {
         this.props.action.fetchCategory.FetchCategory();        
     }
-    render() {
-        debugger
+    render() {         
         let data, data2
         if(this.props.category  ){
             data2 = this.props.category.map(data => {

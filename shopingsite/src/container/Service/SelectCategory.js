@@ -8,11 +8,11 @@ export function SelectSubcategory(id){
     return baseService.get("./SubCategry/SelectBaseOnId/"+id);
 }
 export function ProductSaveService(data){
-    // debugger;
+    //  ;
     return baseService.post("./product/Save",data);
 }
 export function RegisterSaveService(data){
-    debugger;
+     ;
     return baseService.post("./Register/Save",data);
 }
 export function LogingService(data){
@@ -37,8 +37,36 @@ export function FetchProductImageService(id){
 export function FetchProductSingleService(id){
     return baseService.get("./product/FetchSingleProduct/"+ id);
 }
-
-export function BlockUnblockService(id,data){
-    debugger
+export function BlockUnblockService(id,data){     
     return baseService.put("./SubCategry/ActiveDeactive/"+id,data );
+}
+export function SelectCountryService(){
+    return baseService.get("./SELECT/countries");
+}
+export function SelectStateService(id){
+    return baseService.get("./SELECT/state/"+id);
+}
+export function SelectCityService(id){
+    return baseService.get("./SELECT/city/"+id);
+}
+export function SaveRegisterDataService(data){
+    return baseService.post("./Register/Save1",data);
+}
+export function ShowRegisterDataService(ID,ID2){    
+    return baseService.get("./Register/ShowData/"+ID+"/"+ID2);
+}
+export function DeleteRegisterDataService(id,data){
+    return baseService.put("./Register/DeleteRegisterData/"+id,data);
+}
+
+export function FetchSingleRegisterDataAction(id){
+    return baseService.get("./Register/fetchRegisterSingleData/"+id);
+}
+export function UpdateRegisterDataService(id,data){
+    //  
+    return baseService.put("./SubCategry/UpdateData/"+id,data );
+}
+export function totalcountDataService(){
+    //  
+    return baseService.get("./datacount");
 }

@@ -19,7 +19,6 @@ class ViewPrdouct extends Component {
       }
     
       toggle(id) {
-        console.log(id);
         this.props.action.ShowPrdoctImage.FetchProductImageAction(id);
         this.setState({
           modal: !this.state.modal
@@ -28,10 +27,9 @@ class ViewPrdouct extends Component {
 
     componentDidMount = () => {
         this.props.action.ShowPrdoct.AdminFetchProductAction();
-    }
-    
+    }    
     deleteButtonHandler=(id,id2)=>{
-        debugger
+         
         let status;
         if(id2===0){
             status=1
@@ -41,7 +39,6 @@ class ViewPrdouct extends Component {
         let register = {
             "active":status
         }
-        // console.log(id,id2);
         // if(id2===0){
         //     this.setState({active:1})
         // }else if(id2===1){
@@ -51,17 +48,17 @@ class ViewPrdouct extends Component {
         this.props.history.push({pathname: '/ViewProduct'})
         }
     UpdateButtonHandler=(id)=>{
-        // debugger
-        console.log(id);
+        //  
     }
     render() {
         let data,data2
         let imagepath = "http://192.168.200.149:3000/";
         if(this.props.ShowPrdoct){
          data =  this.props.ShowPrdoct.map(data=>{
+
             return <tr key={data.Product_id}>
             <td>{data.Product_id}</td>
-            <td>{data.product_Name}</td>
+            <td>{data.Product_Name}</td>
             <td>{data.Category_Name}</td>
             <td>{data.Sub_Category_Name}</td>
             {/* <td> <Button type="button"   className="btn btn-outline-primary" >show Image</Button></td> */}
@@ -118,6 +115,7 @@ class ViewPrdouct extends Component {
                     </tbody>
                     <tfoot>
                         <tr>
+                        <th>product_Name</th>
                         <th>product_Name</th>
                             <th>Category_Name</th>
                             <th>Sub_Category_Name</th>

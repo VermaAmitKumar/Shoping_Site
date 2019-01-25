@@ -1,7 +1,4 @@
 import React from 'react';
-import Footer from '../../Footer/Footer';
-
-// import { Container } from 'reactstrap';
 import './Home.css'
 
 const img1 = require('../../../Image/3.jpg');

@@ -3,15 +3,21 @@ import './ViewPrdouct.css'
 import { connect } from "react-redux";
 import ClientViewCategory from './ViewCategory'
 import Modal from 'react-modal';
+import Pagination from "react-js-pagination";
 
 import { bindActionCreators } from "redux";
 import * as ProdctAction from '../../action/CategorySelect';
 import { Checkbox } from 'material-ui';
 import Axios from 'axios';
+// require("bootstrap/less/bootstrap.less");
+// import "bootstrap-less";
+
 const img1 = require('../../../Image/1.jpg');
 const img2 = require('../../../Image/2.jpg');
 class ClientViewPrdouct extends Component {
+
     state = {
+        activePage: 15,
         catData: [],
         SubCatData: [],
         Category_id: "",
@@ -25,7 +31,7 @@ class ClientViewPrdouct extends Component {
         })
         this.props.action.ShowPrdoct.FetchProductAction();
     }
-    CategoryIdHandle = (id) => {
+    CategoryIdHandle = (id) => {        
         this.setState({ Category_id: id })
         if (id) {
             Axios.get('http://localhost:3000/SubCategry/SelectBaseOnId/' + id).then(Response => {
@@ -45,7 +51,11 @@ class ClientViewPrdouct extends Component {
             pathname: '/product-id/' + ProductId
             })
     }
+    handlePageChange(pageNumber) {
+        this.setState({activePage: pageNumber});
+      }
     render() {
+    
         let data, data2, data3, data4;
         if (this.state.SubCatData) {
             data3 = this.state.SubCatData.map(data => {
@@ -58,11 +68,10 @@ class ClientViewPrdouct extends Component {
                 return <div className="p"><input type="radio" name="subcat" value="other" onChange={() => this.CategoryIdHandle(data.Category_id)} /> {data.Category_Name} </div>
             })
         }
-        // debugger
+        //  
         let imagepath = "http://192.168.200.149:3000/";
         if (this.props.ShowPrdoct) {
             data = this.props.ShowPrdoct.map(data => {
-                console.log(data);
                 return <div className="col-md-4">
                     <figure className="card card-product">
                         <div className="img-wrap">
@@ -89,7 +98,8 @@ class ClientViewPrdouct extends Component {
                 return <div className="col-md-4">
                     <figure className="card card-product">
                         <div className="img-wrap">
-                        <img src={imagepath.concat(data.Image_Name)}  className="imgstyle" alt="true" />
+                        <img src={imagepath.concat(data.Image_Name)}  className="imgstyle" alt="true" onClick={()=>this.showProductDeatil(data.Product_id)} />
+                        {/* <img src={imagepath.concat(data.Image_Name)}  className="imgstyle" alt="true" /> */}
                             <a className="btn-overlay" href="abc.com">
                             </a>
                         </div>
@@ -123,7 +133,8 @@ class ClientViewPrdouct extends Component {
                 <div className="row extra" style={{ float: "right" }}>
                     {data4 ? data4 : data}
                 </div>     
-                </div>           
+                </div>  
+                   
             </div>           
 
         );

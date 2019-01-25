@@ -3,7 +3,6 @@ import './Loging.css'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as AdminlogingAction from '../../action/CategorySelect';
-
  class AdminLogin extends Component {
     state={
         Email:"",
@@ -13,7 +12,7 @@ import * as AdminlogingAction from '../../action/CategorySelect';
     SubmitButtonHndler=(Event)=>{
         Event.preventDefault();
         this.props.action.adminLogingData.AdminLogingAction(this.state);
-        // console.log(this.state);
+        this.props.history.push({pathname: '/AddProduct'})
     }
     render() {
         return (

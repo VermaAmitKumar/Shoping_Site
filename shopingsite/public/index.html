@@ -7,12 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#000000" />
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
-  <link href="http://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> 
-   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css" />
+  <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" id="bootstrap-css" />  
+  <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 
   <!--
@@ -46,21 +48,28 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   <script>
-    (function ($) {
-      $(document).ready(function () {
-        $('.navbar-light .dmenu').hover(function () {
-          $(this).find('.sm-menu').first().stop(true, true).slideDown(150);
-        }, function () {
-          $(this).find('.sm-menu').first().stop(true, true).slideUp(105)
-        });
-      });
-    }(jQuery));       
+    // (function ($) {
+    //   $(document).ready(function () {
+    //     $('#example').DataTable();
+    //   });
+
+    // }(jQuery));
+
+    // (function ($) {
+    //   $(document).ready(function () {
+    //     $('.navbar-light .dmenu').hover(function () {
+    //       $(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+    //     }, function () {
+    //       $(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+    //     });
+    //   });
+    // }(jQuery));       
 
     // $(document).ready(function() {
     // var table = $('#example').DataTable( {
     //     responsive: true
     // } );
- 
+
     // new $.fn.dataTable.FixedHeader( table );
 // } );
 //     $(document).ready(function () {
@@ -86,7 +95,7 @@
 //         isClosed = true;
 //       }
 //   }
-  
+
 //   $('[data-toggle="offcanvas"]').click(function () {
 //         $('#wrapper').toggleClass('toggled');
 //   });  

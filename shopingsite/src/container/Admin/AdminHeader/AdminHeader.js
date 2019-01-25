@@ -8,10 +8,10 @@ import {
 
 class AdminHeader extends Component {
     linkClickHandler = () => {
-        debugger
+         
     }
     render() {
-        // debugger;
+        //  ;
         return (
             <div id="wrapper">
         <div class="overlay"></div>    

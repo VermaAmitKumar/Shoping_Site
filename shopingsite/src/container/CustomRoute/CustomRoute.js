@@ -8,12 +8,22 @@ class CRoute extends Component {
     }
     render() {            
         const rest = this.getExtractedJson(this.props);
-        const isUserLoggedIn = this.props.LogingReducer.tokenId ? this.props.LogingReducer.tokenId !== "" : false; 
-        const AdminisUserLoggedIn = this.props.adminLogingReducer.AdmintokenId ? this.props.adminLogingReducer.AdmintokenId  !== "" : false;
+        const isUserLoggedIn = this.props.adminLogingReducer.tokenId ? this.props.adminLogingReducer.tokenId !== "" : false; 
+        const AdminisUserLoggedIn = this.props.adminLogingReducer.AdmintokenId ? this.props.adminLogingReducer.AdmintokenId  !== "" : false;        
         const { component, cprivate } = this.props;
         const Component = component;                
-        let redirectTo = undefined;        
-        if (isUserLoggedIn && rest.path === "/Cloging"){        
+        let redirectTo = undefined;  
+
+        if(AdminisUserLoggedIn && rest.path === "/Admin" ){
+            redirectTo = "/";   
+         }   
+         if(!AdminisUserLoggedIn && rest.path === "/AddProduct" ){
+            redirectTo = "/admin";   
+         }
+         else if(!AdminisUserLoggedIn && rest.path === "/ViewProduct" ){
+            redirectTo = "/admin";   
+         }
+        else if (isUserLoggedIn && rest.path === "/Cloging"){        
              redirectTo = "/";   
         }else if (isUserLoggedIn && rest.path === "/Register"){        
             redirectTo = "/";   
@@ -39,7 +49,7 @@ const mapStateToProps = (state) => {
     
     return {
         LogingReducer: state.LogingReducer,
-        adminLogingReducer:state.AdminReducer    
+        adminLogingReducer:state.FetchProductReducer    
     }
 };
 

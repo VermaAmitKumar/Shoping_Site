@@ -30,16 +30,21 @@ class Header extends Component {
 
                  <NavLink className="navbar-brand" tag={Link} to="/">Flipkart</NavLink>
                  <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li className="nav-item">
+                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">                     
+                        {/* <li className="nav-item">
                              <NavLink className="nav-link" tag={Link} to="/">Home <span className="sr-only">(current)</span></NavLink>
                          </li>
+                         {!AdminisUserLoggedIn?             
                         <li className="nav-item">
                             <NavLink className="nav-link" tag={Link} to="/ViewProduct2">View Prdouct</NavLink>
                          </li> 
+                         :""} */}
+                     {!AdminisUserLoggedIn && !isUserLoggedIn?             
                          <li className="nav-item">
                              <NavLink className="nav-link" tag={Link} to="/Register">Register</NavLink>
                          </li>
+                     :""}
+                     {/*     {!AdminisUserLoggedIn?             
                          <li className="nav-item dropdown dmenu">
                                  <NavLink className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                      Profile </NavLink>
@@ -49,9 +54,15 @@ class Header extends Component {
                                      <NavLink className="dropdown-item" tag={Link} to="#" onClick={this.linkClickHandler.bind(this)} >Logout</NavLink>
                                  </div>
                              </li>
+                             :""}
+                     {!AdminisUserLoggedIn && !isUserLoggedIn?             
                          <li className="nav-item">
                              <NavLink className="nav-link" tag={Link} to="/Cloging">Login</NavLink>
                          </li>
+                        :""} */}
+                        
+                        {AdminisUserLoggedIn?
+                        
                          <li className="nav-item dropdown dmenu">
                              <NavLink className="nav-link dropdown-toggle" tag={Link} to="#" id="navbardrop" data-toggle="dropdown">
                                  Product
@@ -61,9 +72,13 @@ class Header extends Component {
                                  <NavLink className="dropdown-item" tag={Link} to="/ViewProduct">View Product</NavLink>
                              </div>
                          </li>
+                         
+                         :""}
+                         {AdminisUserLoggedIn && !isUserLoggedIn?
                          <li className="nav-item">
                              <NavLink className="nav-link" tag={Link} to="#" onClick={this.adminlinkClickHandler.bind(this)}>Admin Logout</NavLink>
                          </li>
+                         :""}
                          {/* <li className="nav-item">
                          <NavLink className="nav-link" tag={Link} to="/Admin/Login">Admin_Login</NavLink>
                          </li> */}
@@ -85,7 +100,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         LogingReducer: state.LogingReducer,
-        adminLogingReducer:state.AdminReducer
+        adminLogingReducer:state.FetchProductReducer
     }
 };
 

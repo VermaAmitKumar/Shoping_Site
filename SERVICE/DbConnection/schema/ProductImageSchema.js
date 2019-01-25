@@ -19,11 +19,11 @@ const ProductImage = mysql.define('Tbl_ProductImage', {
     }   
 });
 
-ProductImage.belongsTo(Product, {foreignKey: 'Product_id'});
-ProductImage.sync({ force: false }).then((res) => {
-    console.log('ProductImage Table Create Succesfully');
-}).catch((err) => {
-    console.log('Error in creating Table', err);
-})
+// ProductImage.belongsTo(Product, {foreignKey: 'Product_id'});
+// ProductImage.sync({ force: false }).then((res) => {
+//     console.log('ProductImage Table Create Succesfully');
+// }).catch((err) => {
+//     console.log('Error in creating Table', err);
+// })
 module.exports = ProductImage;
 

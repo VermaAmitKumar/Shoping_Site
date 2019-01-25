@@ -11,7 +11,6 @@ import * as logingAction from '../../action/CategorySelect';
     SubmitButtonHndler=(Event)=>{
         Event.preventDefault();
         this.props.action.LogingData.LogingAction(this.state);
-        console.log(this.state);
     }
     render() {
         return (
